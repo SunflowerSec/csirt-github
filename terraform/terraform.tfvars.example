@@ -1,0 +1,26 @@
+# Example configuration for CSIRT repository management
+# Copy this file to terraform.tfvars and fill in your values
+
+# GitHub Personal Access Token (keep this secret!)
+github_token = "your_github_token_here"
+
+# GitHub organization
+github_owner = "SunflowerSec"
+
+# CSIRT team members
+team_members = [
+  "einargaustad",
+  # Add other team members here
+]
+
+# Repository configurations
+managed_repositories = {
+  "csirt-infra" = {
+    description           = "CSIRT infrastructure and automation tools"
+    require_reviews      = 2
+    require_status_checks = ["ci/terraform-validate", "ci/security-scan", "ci/lint"]
+    restrict_pushes      = true
+    require_signed_commits = true
+  }
+  # Add more repositories here as needed
+}
